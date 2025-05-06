@@ -40,6 +40,12 @@ class Account extends CActiveRecord
 			// Required fields for account
 			array('username, password, email_address, department_id, position_id', 'required'),
 
+			// Email must be a valid format
+			array('email_address', 'email'),
+
+			// Password: Minimum 8 characters, at least 1 letter and 1 number
+			array('password', 'match', 'pattern'=>'/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', 'message'=>'Password must be at least 8 characters long and contain at least one letter and one number.'),
+
 			// Auto-set fields
 			array('salt, account_type, date_created, date_updated, status', 'safe'),
 
